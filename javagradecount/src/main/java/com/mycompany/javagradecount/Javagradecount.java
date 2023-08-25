@@ -11,6 +11,7 @@ public class Javagradecount {
 
 		String orderReference[] = {"first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth and above"}; 		
 		int listOfGrades[];
+	    	// int listOfGrades[] = new int[amountOfGrades]; cara ethan
 		listOfGrades = new int[amountOfGrades]; 	
 		int sumOfGrades = 0;
 
