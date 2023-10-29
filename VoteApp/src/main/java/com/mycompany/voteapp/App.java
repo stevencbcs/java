@@ -3,9 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.voteapp;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.lang.Math;
 
 /**
  *
@@ -18,11 +20,14 @@ public class App extends javax.swing.JFrame {
 	 */
 	public App() {
 		initComponents();
-		initAppearance();
 		DatabaseTable.setEnabled(false);
-		
 	}
 
+	String CurrentlyChosen = "";
+	double AmountOfVotes = 0;
+	double EthanVotes = 0;
+	double ClaytonVotes = 0;
+	double ClaudiusVotes = 0;
 	ArrayList <Student> StudentList = new ArrayList();
 
 	public void initAppearance() {
@@ -35,7 +40,7 @@ public class App extends javax.swing.JFrame {
 			StudentData[i][1] = StudentList.get(i).getPassword();
 			StudentData[i][2] = StudentList.get(i).getNIS();
 			StudentData[i][3] = StudentList.get(i).getName();
-			StudentData[i][4] = StudentList.get(i).getClass();
+			StudentData[i][4] = StudentList.get(i).getClass_();
 			StudentData[i][5] = StudentList.get(i).isVoted();
 		}
 
@@ -72,13 +77,22 @@ public class App extends javax.swing.JFrame {
                 jPanel1 = new javax.swing.JPanel();
                 jCheckBox1 = new javax.swing.JCheckBox();
                 VotingFrame = new javax.swing.JFrame();
-                jPanel2 = new javax.swing.JPanel();
-                jButton1 = new javax.swing.JButton();
-                jButton2 = new javax.swing.JButton();
-                jButton3 = new javax.swing.JButton();
+                VoteButton = new javax.swing.JButton();
+                ConfirmCheckBox = new javax.swing.JCheckBox();
+                LogOutButton = new javax.swing.JButton();
+                CurrentUserLabel = new javax.swing.JLabel();
+                ClaudiusButton = new javax.swing.JButton();
+                ClaytonButton = new javax.swing.JButton();
+                EthanButton = new javax.swing.JButton();
                 DatabaseFrame = new javax.swing.JFrame();
                 Scroll = new javax.swing.JScrollPane();
                 DatabaseTable = new javax.swing.JTable();
+                ReturnButton = new javax.swing.JButton();
+                CurrentStandingsLabel = new javax.swing.JLabel();
+                EthanStandingsLabel = new javax.swing.JLabel();
+                ClaytonStandingsLabel = new javax.swing.JLabel();
+                ClaudiusStandingsLabel = new javax.swing.JLabel();
+                TotalVotesLabel = new javax.swing.JLabel();
                 LogInTitleLabel = new javax.swing.JLabel();
                 UsernameLabel = new javax.swing.JLabel();
                 UsernameField = new javax.swing.JTextField();
@@ -88,6 +102,7 @@ public class App extends javax.swing.JFrame {
                 CreateAccountRefer = new javax.swing.JButton();
 
                 SignUpFrame.setMinimumSize(new java.awt.Dimension(400, 400));
+                SignUpFrame.setPreferredSize(new java.awt.Dimension(400, 400));
                 SignUpFrame.setResizable(false);
 
                 SignUpTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -220,41 +235,63 @@ public class App extends javax.swing.JFrame {
                                 .addContainerGap(88, Short.MAX_VALUE))
                 );
 
-                VotingFrame.setMinimumSize(new java.awt.Dimension(400, 400));
-                VotingFrame.setPreferredSize(new java.awt.Dimension(400, 400));
-                VotingFrame.setResizable(false);
+                VotingFrame.setMinimumSize(new java.awt.Dimension(500, 500));
+                VotingFrame.setPreferredSize(new java.awt.Dimension(500, 500));
 
-                jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+                VoteButton.setBackground(new java.awt.Color(0, 204, 102));
+                VoteButton.setText("Vote");
+                VoteButton.setEnabled(false);
+                VoteButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                VoteButtonActionPerformed(evt);
+                        }
+                });
 
-                jButton1.setText("Ethan");
+                ConfirmCheckBox.setText("I confirm my choice");
+                ConfirmCheckBox.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                ConfirmCheckBoxActionPerformed(evt);
+                        }
+                });
 
-                jButton2.setText("Clayton");
+                LogOutButton.setBackground(new java.awt.Color(255, 51, 51));
+                LogOutButton.setText("Log Out");
+                LogOutButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                LogOutButtonActionPerformed(evt);
+                        }
+                });
 
-                jButton3.setText("Claudius");
+                CurrentUserLabel.setForeground(new java.awt.Color(102, 102, 102));
+                CurrentUserLabel.setText("Signed in as: ");
+                CurrentUserLabel.setMaximumSize(new java.awt.Dimension(255, 357));
+                CurrentUserLabel.setMinimumSize(new java.awt.Dimension(255, 357));
+                CurrentUserLabel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+                        public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                                CurrentUserLabelPropertyChange(evt);
+                        }
+                });
 
-                javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-                jPanel2.setLayout(jPanel2Layout);
-                jPanel2Layout.setHorizontalGroup(
-                        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                );
-                jPanel2Layout.setVerticalGroup(
-                        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                );
+                ClaudiusButton.setText("Claudius");
+                ClaudiusButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                ClaudiusButtonActionPerformed(evt);
+                        }
+                });
+
+                ClaytonButton.setText("Clayton");
+                ClaytonButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                ClaytonButtonActionPerformed(evt);
+                        }
+                });
+
+                EthanButton.setText("Ethan");
+                EthanButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                EthanButtonActionPerformed(evt);
+                        }
+                });
 
                 javax.swing.GroupLayout VotingFrameLayout = new javax.swing.GroupLayout(VotingFrame.getContentPane());
                 VotingFrame.getContentPane().setLayout(VotingFrameLayout);
@@ -262,15 +299,41 @@ public class App extends javax.swing.JFrame {
                         VotingFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(VotingFrameLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(VotingFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(VotingFrameLayout.createSequentialGroup()
+                                                .addComponent(CurrentUserLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                                                .addGap(84, 84, 84))
+                                        .addGroup(VotingFrameLayout.createSequentialGroup()
+                                                .addGroup(VotingFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                        .addComponent(LogOutButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(VoteButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addGroup(VotingFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(ConfirmCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGroup(VotingFrameLayout.createSequentialGroup()
+                                                                        .addComponent(EthanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                        .addComponent(ClaytonButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                        .addComponent(ClaudiusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 );
                 VotingFrameLayout.setVerticalGroup(
                         VotingFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(VotingFrameLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(70, Short.MAX_VALUE))
+                                .addGroup(VotingFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                                        .addComponent(EthanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ClaytonButton, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ClaudiusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ConfirmCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(VoteButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(LogOutButton)
+                                .addGap(32, 32, 32)
+                                .addComponent(CurrentUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(124, Short.MAX_VALUE))
                 );
 
                 DatabaseFrame.setMinimumSize(new java.awt.Dimension(500, 500));
@@ -289,21 +352,63 @@ public class App extends javax.swing.JFrame {
                 ));
                 Scroll.setViewportView(DatabaseTable);
 
+                ReturnButton.setBackground(new java.awt.Color(255, 51, 51));
+                ReturnButton.setText("Return");
+                ReturnButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                ReturnButtonActionPerformed(evt);
+                        }
+                });
+
+                CurrentStandingsLabel.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+                CurrentStandingsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                CurrentStandingsLabel.setText("Current Standings");
+
+                EthanStandingsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                EthanStandingsLabel.setText("Ethan: ");
+
+                ClaytonStandingsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                ClaytonStandingsLabel.setText("Clayton: ");
+
+                ClaudiusStandingsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                ClaudiusStandingsLabel.setText("Claudius:");
+
+                TotalVotesLabel.setText("jLabel7");
+
                 javax.swing.GroupLayout DatabaseFrameLayout = new javax.swing.GroupLayout(DatabaseFrame.getContentPane());
                 DatabaseFrame.getContentPane().setLayout(DatabaseFrameLayout);
                 DatabaseFrameLayout.setHorizontalGroup(
                         DatabaseFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(DatabaseFrameLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(Scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                                .addGroup(DatabaseFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                                        .addComponent(ReturnButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(CurrentStandingsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(EthanStandingsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(ClaytonStandingsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(ClaudiusStandingsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(TotalVotesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap())
                 );
                 DatabaseFrameLayout.setVerticalGroup(
                         DatabaseFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(DatabaseFrameLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(Scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                                .addContainerGap())
+                                .addComponent(Scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ReturnButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CurrentStandingsLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(EthanStandingsLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ClaytonStandingsLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ClaudiusStandingsLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TotalVotesLabel)
+                                .addContainerGap(7, Short.MAX_VALUE))
                 );
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -413,10 +518,12 @@ public class App extends javax.swing.JFrame {
 						NewPasswordField.getText(),
 						NISField.getText(),
 						FullNameField.getText(),
-						String.valueOf(ClassComboBox.getSelectedItem()),
+						ClassComboBox.getSelectedItem().toString(),
 						false
 					));
 					JOptionPane.showMessageDialog(null, "Registered successfully!");
+					SignUpFrame.setVisible(false);
+					this.setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(null, "Your passwords don't match.");
 				}
@@ -438,6 +545,15 @@ public class App extends javax.swing.JFrame {
 				) {
 				this.setVisible(false);
 				VotingFrame.setVisible(true);
+				CurrentUserLabel.setText("Signed in as: " + UsernameField.getText());
+				if (StudentList.get(i).isVoted() == true) {
+					VoteButton.setEnabled(false);
+					ConfirmCheckBox.setEnabled(false);
+				} else {
+					VoteButton.setEnabled(false);
+					ConfirmCheckBox.setEnabled(true);
+					ConfirmCheckBox.setSelected(false);
+				}
 				showerror = false;
 			}
 		}
@@ -448,6 +564,12 @@ public class App extends javax.swing.JFrame {
 			) {
 			this.setVisible(false);
 			DatabaseFrame.setVisible(true);
+
+			EthanStandingsLabel.setText("Ethan: " + String.valueOf((EthanVotes/AmountOfVotes)*100) + "%");
+			ClaytonStandingsLabel.setText("Clayton: " + String.valueOf((ClaytonVotes/AmountOfVotes)*100) + "%");
+			ClaudiusStandingsLabel.setText("Claudius: " + String.valueOf((ClaudiusVotes/AmountOfVotes)*100) + "%");
+			TotalVotesLabel.setText("Total Votes: " + String.valueOf((int)AmountOfVotes));
+
 			showerror = false;
 		}
 		if (showerror == true) {
@@ -455,6 +577,87 @@ public class App extends javax.swing.JFrame {
 		}
 		initAppearance();
         }//GEN-LAST:event_LogInButtonActionPerformed
+
+        private void ReturnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnButtonActionPerformed
+                // TODO add your handling code here:
+		this.setVisible(true);
+		DatabaseFrame.setVisible(false);
+        }//GEN-LAST:event_ReturnButtonActionPerformed
+
+        private void ConfirmCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmCheckBoxActionPerformed
+                // TODO add your handling code here:
+		if (ConfirmCheckBox.isSelected()) {
+			VoteButton.setEnabled(true);
+		} else {
+			VoteButton.setEnabled(false);
+		}
+        }//GEN-LAST:event_ConfirmCheckBoxActionPerformed
+
+        private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
+                // TODO add your handling code here:
+		VotingFrame.setVisible(false);
+		this.setVisible(true);
+        }//GEN-LAST:event_LogOutButtonActionPerformed
+
+        private void CurrentUserLabelPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CurrentUserLabelPropertyChange
+                // TODO add your handling code here:
+        }//GEN-LAST:event_CurrentUserLabelPropertyChange
+
+        private void VoteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoteButtonActionPerformed
+                // TODO add your handling code here:
+		if (!(CurrentlyChosen.equals(""))) {
+			for (int i = 0; i < StudentList.size(); i++) {
+				if (UsernameField.getText().equals(StudentList.get(i).getUsername())) {
+					StudentList.get(i).setVoted(true);
+				}
+			}
+			AmountOfVotes += 1;
+			if (CurrentlyChosen.equals("Ethan")) {
+				EthanVotes += 1;
+			} else if (CurrentlyChosen.equals("Clayton")) {
+				ClaytonVotes += 1;
+			} else if (CurrentlyChosen.equals("Claudius")) {
+				ClaudiusVotes += 1;
+			}
+			JOptionPane.showMessageDialog(null, "You've successfully voted!");
+			for (int i = 0; i < StudentList.size(); i++) {
+				if (UsernameField.getText().equals(StudentList.get(i).getUsername())) {
+					if (StudentList.get(i).isVoted() == true) {
+						VoteButton.setEnabled(false);
+						ConfirmCheckBox.setEnabled(false);
+					}
+				}
+			}
+		} else {
+			JOptionPane.showMessageDialog(null,"Choose somebody.");
+		}
+
+        }//GEN-LAST:event_VoteButtonActionPerformed
+
+        private void ClaudiusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClaudiusButtonActionPerformed
+                // TODO add your handling code here:
+                EthanButton.setBackground(Color.GRAY);
+                ClaytonButton.setBackground(Color.GRAY);
+                ClaudiusButton.setBackground(Color.GREEN);
+		CurrentlyChosen = "Claudius";
+        }//GEN-LAST:event_ClaudiusButtonActionPerformed
+
+        private void ClaytonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClaytonButtonActionPerformed
+                // TODO add your handling code here:
+                EthanButton.setBackground(Color.GRAY);
+                ClaytonButton.setBackground(Color.GREEN);
+                ClaudiusButton.setBackground(Color.GRAY);
+		CurrentlyChosen = "Clayton";
+        }//GEN-LAST:event_ClaytonButtonActionPerformed
+
+        private void EthanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EthanButtonActionPerformed
+                // TODO add your handling code here:
+                EthanButton.setBackground(Color.GREEN);
+                ClaytonButton.setBackground(Color.GRAY);
+                ClaudiusButton.setBackground(Color.GRAY);
+		CurrentlyChosen = "Ethan";
+        }//GEN-LAST:event_EthanButtonActionPerformed
+
 
 	/**
 	 * @param args the command line arguments
@@ -493,29 +696,39 @@ public class App extends javax.swing.JFrame {
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JComboBox<String> ClassComboBox;
+        private javax.swing.JButton ClaudiusButton;
+        private javax.swing.JLabel ClaudiusStandingsLabel;
+        private javax.swing.JButton ClaytonButton;
+        private javax.swing.JLabel ClaytonStandingsLabel;
+        private javax.swing.JCheckBox ConfirmCheckBox;
         private javax.swing.JPasswordField ConfirmNewPasswordField;
         private javax.swing.JButton CreateAccountButton;
         private javax.swing.JButton CreateAccountRefer;
+        private javax.swing.JLabel CurrentStandingsLabel;
+        private javax.swing.JLabel CurrentUserLabel;
         private javax.swing.JFrame DatabaseFrame;
         private javax.swing.JTable DatabaseTable;
+        private javax.swing.JButton EthanButton;
+        private javax.swing.JLabel EthanStandingsLabel;
         private javax.swing.JTextField FullNameField;
         private javax.swing.JButton LogInButton;
         private javax.swing.JButton LogInRefer;
         private javax.swing.JLabel LogInTitleLabel;
+        private javax.swing.JButton LogOutButton;
         private javax.swing.JTextField NISField;
         private javax.swing.JPasswordField NewPasswordField;
         private javax.swing.JTextField NewUsernameField;
         private javax.swing.JPasswordField PasswordField;
         private javax.swing.JLabel PasswordLabel;
+        private javax.swing.JButton ReturnButton;
         private javax.swing.JScrollPane Scroll;
         private javax.swing.JFrame SignUpFrame;
         private javax.swing.JLabel SignUpTitleLabel;
+        private javax.swing.JLabel TotalVotesLabel;
         private javax.swing.JTextField UsernameField;
         private javax.swing.JLabel UsernameLabel;
+        private javax.swing.JButton VoteButton;
         private javax.swing.JFrame VotingFrame;
-        private javax.swing.JButton jButton1;
-        private javax.swing.JButton jButton2;
-        private javax.swing.JButton jButton3;
         private javax.swing.JCheckBox jCheckBox1;
         private javax.swing.JLabel jLabel1;
         private javax.swing.JLabel jLabel2;
@@ -524,6 +737,5 @@ public class App extends javax.swing.JFrame {
         private javax.swing.JLabel jLabel5;
         private javax.swing.JLabel jLabel6;
         private javax.swing.JPanel jPanel1;
-        private javax.swing.JPanel jPanel2;
         // End of variables declaration//GEN-END:variables
 }
